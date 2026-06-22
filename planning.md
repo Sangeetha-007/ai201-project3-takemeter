@@ -12,7 +12,7 @@ https://www.reddit.com/r/soccer/comments/1ubtxtp/spain_1_0_saudi_arabia_lamine_y
 
 LABEL_DESCRIPTIONS = {
     "analysis": "the post makes a structured argument backed by statistics, historical comparison, or tactical observation. Evidence is specific and verifiable.",
-    "hot_take": "a bold, confident opinion stated without supporting evidence. The claim might be true, but the post asserts rather than argues.",
+    "hot take": "a bold, confident opinion stated without supporting evidence. The claim might be true, but the post asserts rather than argues.",
     "reaction": "an immediate emotional response to a specific event. Little to no argument — the post is expressing a feeling in the moment."
 }
 
@@ -20,8 +20,8 @@ Examples:
 "The last WC game England played in the Azteca was vs Argentina in 86!" : analysis
 "Curaçao manager Dick Advocaat (78) in tears after helping Curaçao, the smallest nation to ever make the World Cup, earn a point against Ecuador. 
 He is the oldest manager in World Cup history by four years. This is Advocaat’s 27th managerial stint, not counting repeats" : analysis
-"The hand of Bellingham in bound to send Mexico into absolute Chaos." : hot_take
-"Oyarzabal is incredibly underrated" : hot_take
+"The hand of Bellingham in bound to send Mexico into absolute Chaos." : hot take
+"Oyarzabal is incredibly underrated" : hot take
 "To be fair Korea in LA as a second place team will still be huge for them" : reaction
 "I'd really like us to go for him as a backup plan for a bigger name striker. I don't really get why we've never been linked to him." : reaction
 "His poor performance in game 1 didnt help his cause" : uncertain
@@ -62,3 +62,10 @@ The classifier is considered successful if it achieves a macro F1 ≥ 0.70 on th
 - **Prompt construction** — include the three label descriptions and 2–3 labeled examples per class in the system prompt to anchor the model's judgment.
 - **Batch processing** — iterate over collected posts, call the API per post, and write predictions to the CSV alongside ground-truth labels.
 - **Evaluation script** — compute accuracy, per-class F1, and confusion matrix using scikit-learn against the hand-labeled sample.
+
+
+#### Hypothesis
+
+75% baseline accuracy. I believe the reason for this is because "hot take" and "reaction"
+can appear very similar. It was a challenge to label them. Sometimes we can't label it correctly
+through text because it lacks tone. Also, certain posts appear as analysis because of the info being presented. However, in reality they can be wrong and can be a hot take instead. 
